@@ -109,6 +109,7 @@ namespace CaesarCipher
 
 			output.Clear();
 
+
 			string[] text = this.TextBox.Text.Split('\n');
 
 			await Task.Run(() => {

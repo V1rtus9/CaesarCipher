@@ -17,10 +17,10 @@ namespace CaesarCipher
 		/// 
 		/// </summary>
 		private string alphabet = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"; // 26
-		//{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-		/// <summary>
-		/// 
-		/// </summary>
+																						 //{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+																						 /// <summary>
+																						 /// 
+																						 /// </summary>
 		private List<string> alphabetSymbols = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 		/// <summary>
 		/// 
@@ -132,7 +132,8 @@ namespace CaesarCipher
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="output"></param>
-		public void Crack(string input, ref StringBuilder output, ref int shift) {
+		public void Crack(string input, ref StringBuilder output, ref int shift)
+		{
 
 			List<double> values = new List<double>();
 			StringBuilder inputValue = new StringBuilder();
@@ -219,7 +220,7 @@ namespace CaesarCipher
 
 			for (int i = 0; i < relativeFreq.Length; i++)
 			{
-				if (relativeFreq[i] == 0 || Char.IsWhiteSpace((Char)i) || Char.IsPunctuation((Char)i) )
+				if (relativeFreq[i] == 0 || Char.IsWhiteSpace((Char)i) || Char.IsPunctuation((Char)i))
 					continue;
 
 				double expected = letterFrequency[alphabetSymbols.IndexOf((((Char)i).ToString()))];
