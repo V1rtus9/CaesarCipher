@@ -1,0 +1,21 @@
+﻿<Window x:Class="CaesarCipher.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaesarCipher"
+        mc:Ignorable="d"
+        Title="Caesar Cipher" Height="310" Width="605" MinWidth="605" MinHeight="310" MaxWidth="605" MaxHeight="310" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Button Content="Encode" HorizontalAlignment="Left" Margin="488,71,0,0" VerticalAlignment="Top" Width="94" Click="EncodeBtnClick" RenderTransformOrigin="0.489,-1"/>
+        <Button Content="Decode" HorizontalAlignment="Left" Margin="488,98,0,0" VerticalAlignment="Top" Width="94" Click="DecodeBtnClick"/>
+        <Button Content="Crack" HorizontalAlignment="Left" Margin="488,125,0,0" VerticalAlignment="Top" Width="94" Click="HackBtnClick" RenderTransformOrigin="0.489,2.909"/>
+        <Button Content="Clear" HorizontalAlignment="Left" Margin="488,152,0,0" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.436,2.273" Click="ClearInputBtnClick"/>
+        <Label Content="Input / Output" HorizontalAlignment="Left" Margin="5,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.553,0.538" FontSize="14" Width="100"/>
+        <TextBox x:Name="TextBox" HorizontalAlignment="Left" Height="204" Margin="10,33,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="460" AcceptsReturn="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+        <Button Content="Exit" HorizontalAlignment="Left" Margin="488,215,0,0" VerticalAlignment="Top" Width="94" RenderTransformOrigin="0.436,2.273" Click="ExitBtnClick"/>
+        <Label Content="Shift" HorizontalAlignment="Left" Margin="488,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.553,0.538" FontSize="14"/>
+        <TextBox x:Name="ShiftValue" HorizontalAlignment="Left" Height="23" Margin="531,33,0,0" TextWrapping="Wrap" Text="0"  VerticalAlignment="Top" Width="51" RenderTransformOrigin="0.447,-0.478" PreviewTextInput="ShiftValidationTextBox"/>
+
+    </Grid>
+</Window>
