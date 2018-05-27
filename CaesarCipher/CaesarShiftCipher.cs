@@ -20,12 +20,11 @@ namespace CaesarCipher
 		/// <summary>
 		/// 
 		/// </summary>
-		private List<char> alphabetSymbols = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		private List<char> regularAlphabet = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 		/// <summary>
 		/// 
 		/// </summary>
-		private List<char> shiftedSymbols = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-		//{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		private List<char> shiftedAlphabet = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 		/// <summary>
 		///  letterFrequency are the relative letter frequencies in the English language. The values are taken from <http://en.wikipedia.org/wiki/Letter_frequency>. They are expressed as decimals and sum to 1.0.
 		/// </summary>
@@ -34,24 +33,27 @@ namespace CaesarCipher
 		/// 
 		/// </summary>
 		private int previousShiftValue = 0;
+		/// <summary>
+		/// 
+		/// </summary>
+		public static CaesarShiftCipher Instance
+		{
+			get
+			{
+				if (instance == null)
+				{
+					return instance = new CaesarShiftCipher();
+				}
+
+				return instance;
+			}
+		}
+
 
 		/// <summary>
 		/// Private constructor
 		/// </summary>
-		//private CaesarShiftCipher() { }
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <returns></returns>
-		public static CaesarShiftCipher Instance()
-		{
-			if (instance == null)
-			{
-				return instance = new CaesarShiftCipher();
-			}
-
-			return instance;
-		}
+		private CaesarShiftCipher() { }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -60,7 +62,7 @@ namespace CaesarCipher
 		/// <param name="shift"></param>
 		public void Decode(string input, ref StringBuilder output, int shift)
 		{
-			if (!CheckShift(shift) || shiftedSymbols.Count == 0)
+			if (!CheckShift(shift) || shiftedAlphabet.Count == 0)
 				ShiftList(shift);
 
 			foreach (Char item in input)
@@ -73,7 +75,7 @@ namespace CaesarCipher
 
 				try
 				{
-					output.Append(shiftedSymbols[alphabetSymbols.IndexOf(item)]);
+					output.Append(shiftedAlphabet[regularAlphabet.IndexOf(item)]);
 				}
 				catch (ArgumentOutOfRangeException)
 				{
@@ -97,7 +99,7 @@ namespace CaesarCipher
 		/// <param name="shift"></param>
 		public void Encode(string input, ref StringBuilder output, int shift)
 		{
-			if (!CheckShift(shift) || shiftedSymbols.Count == 0)
+			if (!CheckShift(shift) || shiftedAlphabet.Count == 0)
 				ShiftList(shift);
 
 			foreach (Char item in input)
@@ -110,7 +112,7 @@ namespace CaesarCipher
 
 				try
 				{
-					output.Append(alphabetSymbols[shiftedSymbols.IndexOf(item)]);
+					output.Append(regularAlphabet[shiftedAlphabet.IndexOf(item)]);
 				}
 				catch (ArgumentOutOfRangeException)
 				{
@@ -171,7 +173,7 @@ namespace CaesarCipher
 		/// <param name="shift"></param>
 		private void ShiftList(int shift)
 		{
-			shiftedSymbols = alphabetSymbols.ShiftRight(shift);
+			shiftedAlphabet = regularAlphabet.ShiftRight(shift);
 		}
 		/// <summary>
 		/// 
@@ -219,7 +221,7 @@ namespace CaesarCipher
 				if (relativeFreq[i] == 0 || Char.IsWhiteSpace((Char)i) || Char.IsPunctuation((Char)i))
 					continue;
 
-				double expected = letterFrequency[alphabetSymbols.IndexOf(((Char)i))];
+				double expected = letterFrequency[regularAlphabet.IndexOf(((Char)i))];
 
 				sum += Math.Pow((relativeFreq[i] - expected), 2) / expected;
 			}

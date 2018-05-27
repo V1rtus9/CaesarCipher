@@ -52,7 +52,7 @@ namespace CaesarCipher
 
 				foreach (string item in text)
 				{
-					CaesarShiftCipher.Instance().Encode(item, ref output, shift);
+					CaesarShiftCipher.Instance.Encode(item, ref output, shift);
 				}
 
 			});
@@ -83,7 +83,7 @@ namespace CaesarCipher
 
 				foreach (string item in text)
 				{
-					CaesarShiftCipher.Instance().Decode(item, ref output, shift);
+					CaesarShiftCipher.Instance.Decode(item, ref output, shift);
 				}
 
 			});
@@ -96,7 +96,7 @@ namespace CaesarCipher
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="args"></param>
-		private async void HackBtnClick(object sender, RoutedEventArgs args)
+		private async void CrackBtnClick(object sender, RoutedEventArgs args)
 		{
 
 			if (String.IsNullOrEmpty(this.TextBox.Text))
@@ -109,14 +109,13 @@ namespace CaesarCipher
 
 			output.Clear();
 
-
 			string[] text = this.TextBox.Text.Split('\n');
 
 			await Task.Run(() => {
 
 				foreach (string item in text)
 				{
-					CaesarShiftCipher.Instance().Crack(item, ref output, ref crackedShift);
+					CaesarShiftCipher.Instance.Crack(item, ref output, ref crackedShift);
 				}
 
 			});
