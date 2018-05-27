@@ -16,16 +16,15 @@ namespace CaesarCipher
 		/// <summary>
 		/// 
 		/// </summary>
-		private string alphabet = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"; // 26
-																						 //{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-																						 /// <summary>
-																						 /// 
-																						 /// </summary>
-		private List<string> alphabetSymbols = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+		private string alphabet = "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z"; // 26	
 		/// <summary>
 		/// 
 		/// </summary>
-		private List<string> shiftedSymbols = new List<string>() { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+		private List<char> alphabetSymbols = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
+		/// <summary>
+		/// 
+		/// </summary>
+		private List<char> shiftedSymbols = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 		//{ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 		/// <summary>
 		///  letterFrequency are the relative letter frequencies in the English language. The values are taken from <http://en.wikipedia.org/wiki/Letter_frequency>. They are expressed as decimals and sum to 1.0.
@@ -74,7 +73,7 @@ namespace CaesarCipher
 
 				try
 				{
-					output.Append(shiftedSymbols[alphabetSymbols.IndexOf(item.ToString())]);
+					output.Append(shiftedSymbols[alphabetSymbols.IndexOf(item)]);
 				}
 				catch (ArgumentOutOfRangeException)
 				{
@@ -111,7 +110,7 @@ namespace CaesarCipher
 
 				try
 				{
-					output.Append(alphabetSymbols[shiftedSymbols.IndexOf(item.ToString())]);
+					output.Append(alphabetSymbols[shiftedSymbols.IndexOf(item)]);
 				}
 				catch (ArgumentOutOfRangeException)
 				{
@@ -172,10 +171,7 @@ namespace CaesarCipher
 		/// <param name="shift"></param>
 		private void ShiftList(int shift)
 		{
-			shiftedSymbols.Clear();
-
 			shiftedSymbols = alphabetSymbols.ShiftRight(shift);
-
 		}
 		/// <summary>
 		/// 
@@ -223,7 +219,7 @@ namespace CaesarCipher
 				if (relativeFreq[i] == 0 || Char.IsWhiteSpace((Char)i) || Char.IsPunctuation((Char)i))
 					continue;
 
-				double expected = letterFrequency[alphabetSymbols.IndexOf((((Char)i).ToString()))];
+				double expected = letterFrequency[alphabetSymbols.IndexOf(((Char)i))];
 
 				sum += Math.Pow((relativeFreq[i] - expected), 2) / expected;
 			}
@@ -231,6 +227,6 @@ namespace CaesarCipher
 			return Math.Sqrt(sum);
 		}
 
-		//JGNNQ FWFG JQY CTG AQW?
+		//JGNNQ FWFG, JQY CTG AQW?
 	}
 }
